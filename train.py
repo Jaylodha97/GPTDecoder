@@ -13,6 +13,7 @@ class TrainingLoop:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # Use GPU if available
         self._initialise_training_params(training_params)
         self.model = GPTDecoder(model_params=model_params).to(self.device)  # Move model to the device
+        self.num_params = sum(param.numel() for param in self.model.parameters())
         self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.lr)
         self.best_val_loss = float('inf')  # To track the best validation loss
         self.start_epoch = 0  # To track the starting epoch (useful for resuming training)
@@ -106,6 +107,7 @@ class TrainingLoop:
         if resume_path:
             self.load_checkpoint(resume_path)
 
+        logger.debug(f"Number of model parameters: {self.num_params}")
         train_iter = iter(train_loader)
 
         for epoch in range(self.start_epoch, self.epochs):
