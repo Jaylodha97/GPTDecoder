@@ -104,9 +104,27 @@ class CustomDataLoader:
         return tokens, labels, masks
 
     def get_train_loader(self, shuffle: bool = True):
+        """
+        Returns a DataLoader for the training dataset containing a batch of input_tokens, labels and corresponding mask tensor.
+
+        Args:
+            shuffle (bool): Whether to shuffle the data at each epoch. Defaults to True.
+
+        Returns:
+            DataLoader: DataLoader for the training dataset.
+        """
         self.train_loader = DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=shuffle, collate_fn=self.collate_fn)
         return self.train_loader
 
     def get_val_loader(self, shuffle: bool = False):
+        """
+        Returns a DataLoader for the validation dataset containing a batch of input_tokens, labels and corresponding mask tensor.
+
+        Args:
+            shuffle (bool): Whether to shuffle the data at each epoch. Defaults to False.
+
+        Returns:
+            DataLoader: DataLoader for the validation dataset.
+        """
         self.val_loader = DataLoader(self.val_dataset, batch_size=self.batch_size, shuffle=shuffle, collate_fn=self.collate_fn)
         return self.val_loader
