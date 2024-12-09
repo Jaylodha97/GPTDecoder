@@ -1,6 +1,9 @@
 # Recommended python version -> 3.10.12
+# Also install torch - check website for instructions
 tiktoken==0.8.0
 kagglehub==0.3.4
 pandas==2.2.3
 loguru==0.7.2
 scikit-learn==1.5.2
+numpy==1.26.4
+plotly==5.24.1
