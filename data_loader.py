@@ -144,4 +144,4 @@ class CustomDataLoader:
             DataLoader: DataLoader for the validation dataset.
         """
         self.test_loader = DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=shuffle, collate_fn=self.collate_fn)
-        return self.val_loader
+        return self.test_loader
